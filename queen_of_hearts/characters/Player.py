@@ -5,14 +5,11 @@ from pygame.locals import K_DOWN, K_LEFT, K_RIGHT, K_UP
 class Player(pygame.sprite.Sprite):
     def __init__(self, position: list[int]):
         super(Player, self).__init__()
-        self.surface = pygame.Surface((75, 25))
+        self.surface = pygame.Surface((25, 25))
         self.surface.fill((0, 0, 0))
         self.rect = self.surface.get_rect(center=position)
 
-        self.attributes = {"speed": 5}
-
-    def update(self, screen: pygame.Surface):
-        screen.blit(self.surface, self.rect)
+        self.attributes = {"speed": 3}
 
     def check_border_player_area(self, player_area: tuple[int]):
         if self.rect.left < 0:
