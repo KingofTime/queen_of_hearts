@@ -14,7 +14,17 @@ class Player(pygame.sprite.Sprite):
     def update(self, screen: pygame.Surface):
         screen.blit(self.surface, self.rect)
 
-    def _handle_event(self, pressed_keys: dict):
+    def check_border_player_area(self, player_area: tuple[int]):
+        if self.rect.left < 0:
+            self.rect.right = player_area[0]
+        if self.rect.right > player_area[0]:
+            self.rect.left = 0
+        if self.rect.top < 0:
+            self.rect.top = 0
+        if self.rect.bottom > player_area[1]:
+            self.rect.bottom = player_area[1]
+
+    def handle_event(self, pressed_keys: dict):
         if pressed_keys[K_UP]:
             self.rect.move_ip(0, self.attributes["speed"] * -1)
         if pressed_keys[K_DOWN]:

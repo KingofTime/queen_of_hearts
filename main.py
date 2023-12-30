@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import K_ESCAPE, KEYDOWN, QUIT
 
 from queen_of_hearts.characters.Player import Player
-from queen_of_hearts.config.Screen import Screen
+from queen_of_hearts.config.screen import Screen
 
 pygame.init()
 
@@ -24,9 +24,9 @@ class Game:
             for event in pygame.event.get():
                 self._handle_event(event)
 
-                pressed_keys = pygame.key.get_pressed()
-                print(pressed_keys)
-                self.player._handle_event(pressed_keys)
+            pressed_keys = pygame.key.get_pressed()
+            self.player.handle_event(pressed_keys)
+            self.player.check_border_player_area(self.screen_size)
 
             self._update_screen()
             pygame.display.flip()
